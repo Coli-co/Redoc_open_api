@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  description: |
+    You can find out more about Swagger at [http://swagger.io](http://swagger.io).
+
+    # Introduction
+    This API is documented in **OpenAPI format**.
+    It is illustrated how to check the situation of clock in and clock out of employees and how to clock in and clock out. 
+  version: 1.0.0
+  title: Swagger Employees
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: API Support
+    email: apiteam@swagger.io
+    url: https://github.com/Redocly/redoc
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: employees
+    description: Everything about employees attendance
+x-tagGroups:
+  - name: General
+    tags:
+      - employees
+paths:
+  /employees:
+    post: 
+      tags:
+        - employees
+      summary: Create clockin and clockout record.
+      description: Feature of clockin and clockout.
+      responses:
+        '201':
+          description: Employee record created successfully.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Clockin'
+        description: Created user object
+        required: true
+
+components:
+  schemas:
+    Clockin:
+      type: object
+      properties: 
+        employeeNumber:
+          description: employee number
+          type: integer
+          minLength: 1
+          example: 1110001
+        clockIn:
+          description: clockin in millisecond and it should be less than clockout.
+          type: integer
+          minLength: 1
+          example: 1641361320000
+        clockOut: 
+          description: clockout in millisecond and it should be larger than clockout.
+          type: integer
+          minLength: 1
+          example: 1641376740000
+
+
