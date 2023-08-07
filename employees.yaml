@@ -34,7 +34,10 @@ paths:
         '201':
           description: Employee record created successfully.
         '400':
-          description: ClockIn or clockOut must be greater than zero.
+          description: |
+            - ClockIn or clockOut must be greater than zero.
+            - Request body of employeeNumber or clockIn or clockOut required.
+            - Work time should not be greater than off-work time.
       requestBody:
         content:
           application/json:
