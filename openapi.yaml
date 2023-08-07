@@ -733,7 +733,7 @@ paths:
       requestBody:
         content:
           application/json:
-            # schema:
+            schema:
               $ref: '#/components/schemas/User'
         description: Created user object
         required: true

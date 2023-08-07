@@ -40,13 +40,41 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Clockin'
-        description: Created user object
         required: true
-
+  '/employees/{employeenumber}': 
+    put:
+      tags:
+        - employees
+      summary: Fill in clockin or clockout record.
+      description: Employee fill in clockin or clockout.
+      parameters:
+        - name: employeenumber
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: |
+            - Clockin record updated successfully.
+            - Clockin record updated successfully.
+        '400':
+          description:  |
+            - You do not need to fill in clockin or clockout data.
+            - Request body of clockin or clockout required.
+            - Work time must be less than off-work time or off-work time must be greater than work time.
+        '404':
+          description: Employee not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClockFilled'
+        required: true
 components:
   schemas:
     Clockin:
-      type: object
+      # type: object
       properties: 
         employeeNumber:
           description: employee number
@@ -63,5 +91,15 @@ components:
           type: integer
           minLength: 1
           example: 1641376740000
-
+    ClockFilled:
+      # type: object
+      properties: 
+        clockIn:
+          description: clockin in millisecond and it should be less than clockout.
+          type: integer
+          example: 1641170400000
+        clockOut: 
+          description: clockout in millisecond and it should be larger than clockout.
+          type: integer
+          example: 1641201720000
 
