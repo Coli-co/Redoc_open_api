@@ -33,6 +33,8 @@ paths:
       responses:
         '201':
           description: Employee record created successfully.
+        '400':
+          description: ClockIn or clockOut must be greater than zero.
       requestBody:
         content:
           application/json:
