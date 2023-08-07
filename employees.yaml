@@ -44,6 +44,24 @@ paths:
             schema:
               $ref: '#/components/schemas/Clockin'
         required: true
+    get:
+      tags:
+        - employees
+      summary: Get all employees records.
+      description: All employees records with or without specific date.
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: integer
+          description: Date in millisecond
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allEmployee'
   '/employees/{employeenumber}': 
     put:
       tags:
@@ -80,17 +98,17 @@ components:
       # type: object
       properties: 
         employeeNumber:
-          description: employee number
+          description: Employee number
           type: integer
           minLength: 1
           example: 1110001
         clockIn:
-          description: clockin in millisecond and it should be less than clockout.
+          description: Clockin in millisecond and it should be less than clockout.
           type: integer
           minLength: 1
           example: 1641361320000
         clockOut: 
-          description: clockout in millisecond and it should be larger than clockout.
+          description: Clockout in millisecond and it should be larger than clockout.
           type: integer
           minLength: 1
           example: 1641376740000
@@ -98,11 +116,37 @@ components:
       # type: object
       properties: 
         clockIn:
-          description: clockin in millisecond and it should be less than clockout.
+          description: Clockin in millisecond and it should be less than clockout.
           type: integer
           example: 1641170400000
         clockOut: 
-          description: clockout in millisecond and it should be larger than clockout.
+          description: Clockout in millisecond and it should be larger than clockout.
           type: integer
           example: 1641201720000
+    allEmployee:
+      type: array
+      minItems: 0
+      items: 
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 2
+            employeenumber:
+              type: integer
+              example: 11100001
+            clockin:
+              type: integer
+              example: 1641168000000
+            clockout:
+              type: integer
+              example: 1641202380000
+            rest:
+              type: integer
+              example: 1.5
+            totalWorkTime:
+              type: float
+              example: 9.55
+      additionalItems:
+          type: object
 
