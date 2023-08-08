@@ -18,7 +18,7 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: employees
-    description: Everything about employees attendance
+    description: Everything about employees attendance.
 x-tagGroups:
   - name: General
     tags:
@@ -36,8 +36,8 @@ paths:
         '400':
           description: |
             - ClockIn or clockOut must be greater than zero.
-            - Request body of employeeNumber or clockIn or clockOut required.
             - Work time should not be greater than off-work time.
+            - Request body of employeeNumber or clockIn or clockOut required.
       requestBody:
         content:
           application/json:
@@ -78,11 +78,11 @@ paths:
         '201':
           description: |
             - Clockin record updated successfully.
-            - Clockin record updated successfully.
+            - Clockout record updated successfully.
         '400':
           description:  |
-            - You do not need to fill in clockin or clockout data.
             - Request body of clockin or clockout required.
+            - You do not need to fill in clockin or clockout data.
             - Work time must be less than off-work time or off-work time must be greater than work time.
         '404':
           description: Employee not found.
@@ -125,13 +125,13 @@ paths:
       tags:
         - employees
       summary:  Clockin earliest employees
-      description: List all employees with clockin earliest at specific date top five.
+      description: List top five employees with clockin earliest at specific date.
       parameters:
           - name: date
             in: query
             schema:
               type: integer
-            description: Start date in millisecond
+            description: Date in millisecond
             required: true
       responses:
         '200':
@@ -186,10 +186,10 @@ components:
               type: integer
               example: 11100001
             clockin:
-              type: string
+              type: integer
               example: 1641168000000
             clockout:
-              type: string
+              type: integer
               example: 1641202380000
             rest:
               type: integer
@@ -212,10 +212,10 @@ components:
               type: integer
               example: 11100011
             clockin:
-              type: string
+              type: integer
               example: 1641170340000
             clockout: 
-              type: string
+              type: integer
               default: null
       additionalItems:
           type: object
@@ -232,10 +232,10 @@ components:
               type: integer
               example: 11100011
             clockin:
-              type: string
+              type: integer
               example: 1641345360000
             clockout:
-              type: string
+              type: integer
               example: 1641374400000  
       additionalItems:
           type: object
