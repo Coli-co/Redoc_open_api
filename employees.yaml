@@ -120,12 +120,33 @@ paths:
                 $ref: '#/components/schemas/noclockoutEmployee'
         '400':
           description: Start date must be less than end date.  
+  /employees/clockin-earliest:
+    get:
+      tags:
+        - employees
+      summary: Get clockin earliest employees
+      description: Get all employees with clockin earliest at specific date.
+      parameters:
+          - name: date
+            in: query
+            schema:
+              type: integer
+            description: Start date in millisecond
+            required: true
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clockinEarliestEmployee'
+        '400':
+          description: Start date must be less than end date.
 
 
 components:
   schemas:
     Clockin:
-      # type: object
       properties: 
         employeeNumber:
           description: Employee number
@@ -134,24 +155,23 @@ components:
           example: 1110001
         clockIn:
           description: Clockin in millisecond and it should be less than clockout.
-          type: integer
+          type: string
           minLength: 1
           example: 1641361320000
         clockOut: 
           description: Clockout in millisecond and it should be larger than clockout.
-          type: integer
+          type: string
           minLength: 1
           example: 1641376740000
     ClockFilled:
-      # type: object
       properties: 
         clockIn:
           description: Clockin in millisecond and it should be less than clockout.
-          type: integer
+          type: string
           example: 1641170400000
         clockOut: 
           description: Clockout in millisecond and it should be larger than clockout.
-          type: integer
+          type: string
           example: 1641201720000
     allEmployee:
       type: array
@@ -166,14 +186,14 @@ components:
               type: integer
               example: 11100001
             clockin:
-              type: integer
+              type: string
               example: 1641168000000
             clockout:
-              type: integer
+              type: string
               example: 1641202380000
             rest:
               type: integer
-              example: 1.5
+              default: 1.5
             totalWorkTime:
               type: float
               example: 9.55
@@ -192,8 +212,30 @@ components:
               type: integer
               example: 11100011
             clockin:
-              type: integer
+              type: string
               example: 1641170340000
-            clockout: 'null'
+            clockout: 
+              type: string
+              default: null
+      additionalItems:
+          type: object
+    clockinEarliestEmployee:
+      type: array
+      minItems: 0
+      items: 
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 34
+            employeenumber:
+              type: integer
+              example: 11100011
+            clockin:
+              type: string
+              example: 1641345360000
+            clockout:
+              type: string
+              example: 1641374400000  
       additionalItems:
           type: object
