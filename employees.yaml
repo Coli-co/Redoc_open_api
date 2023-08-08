@@ -47,8 +47,8 @@ paths:
     get:
       tags:
         - employees
-      summary: Get all employees records
-      description: All employees records with or without specific date.
+      summary:  All employees records
+      description: Get all employees records with or without specific date.
       parameters:
         - name: date
           in: query
@@ -66,8 +66,8 @@ paths:
     put:
       tags:
         - employees
-      summary: Fill in clockin or clockout
-      description: Employee fill in clockin or clockout data.
+      summary: Supplementary time of clockin or clockout
+      description: Employee can fill in clockin or clockout data.
       parameters:
         - name: employeenumber
           in: path
@@ -96,7 +96,7 @@ paths:
     get:
       tags:
         - employees
-      summary: Get no clockout employees
+      summary: No clockout employees
       description: Get all employees with no clockout in specific date range.
       parameters:
           - name: start
@@ -124,8 +124,8 @@ paths:
     get:
       tags:
         - employees
-      summary: Get clockin earliest employees
-      description: Get all employees with clockin earliest at specific date.
+      summary:  Clockin earliest employees
+      description: List all employees with clockin earliest at specific date top five.
       parameters:
           - name: date
             in: query
