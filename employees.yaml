@@ -28,8 +28,8 @@ paths:
     post: 
       tags:
         - employees
-      summary: Create clockin and clockout record.
-      description: Feature of clockin and clockout.
+      summary: Feature of clockin and clockout
+      description: Employee can create clockin and clockout record.
       responses:
         '201':
           description: Employee record created successfully.
@@ -47,7 +47,7 @@ paths:
     get:
       tags:
         - employees
-      summary: Get all employees records.
+      summary: Get all employees records
       description: All employees records with or without specific date.
       parameters:
         - name: date
@@ -66,8 +66,8 @@ paths:
     put:
       tags:
         - employees
-      summary: Fill in clockin or clockout record.
-      description: Employee fill in clockin or clockout.
+      summary: Fill in clockin or clockout
+      description: Employee fill in clockin or clockout data.
       parameters:
         - name: employeenumber
           in: path
@@ -92,6 +92,34 @@ paths:
             schema:
               $ref: '#/components/schemas/ClockFilled'
         required: true
+  /employees/noclockout:
+    get:
+      tags:
+        - employees
+      summary: Get no clockout employees
+      description: Get all employees with no clockout in specific date range.
+      parameters:
+          - name: start
+            in: query
+            schema:
+              type: integer
+            description: Start date in millisecond
+            required: true
+          - name: end
+            in: query
+            schema:
+              type: integer
+            description: End date in millisecond
+            required: true
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allEmployee'
+        '400':
+          description: Start date must be less than end date.  
 components:
   schemas:
     Clockin:
