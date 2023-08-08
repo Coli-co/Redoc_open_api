@@ -117,9 +117,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/allEmployee'
+                $ref: '#/components/schemas/noclockoutEmployee'
         '400':
           description: Start date must be less than end date.  
+
+
 components:
   schemas:
     Clockin:
@@ -177,4 +179,21 @@ components:
               example: 9.55
       additionalItems:
           type: object
-
+    noclockoutEmployee:
+      type: array
+      minItems: 0
+      items: 
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 11
+            employeenumber:
+              type: integer
+              example: 11100011
+            clockin:
+              type: integer
+              example: 1641170340000
+            clockout: 'null'
+      additionalItems:
+          type: object
