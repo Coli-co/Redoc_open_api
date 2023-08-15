@@ -47,7 +47,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Clockin'
-        required: true
     get:
       tags:
         - employees
@@ -175,14 +174,12 @@ components:
           minLength: 1
           example: 1110001
         clockIn:
-          description: Clockin in millisecond and it should be less than clockout.
+          description: It should be less than clockout in millisecond.
           type: string
-          minLength: 1
           example: 1641361320000
         clockOut: 
-          description: Clockout in millisecond and it should be larger than clockout.
+          description: It should be larger than clockin in millisecond.
           type: string
-          minLength: 1
           example: 1641376740000
     ClockFilled:
       properties: 
