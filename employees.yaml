@@ -33,7 +33,10 @@ paths:
       description: Employee can create clockin and clockout record.
       responses:
         '201':
-          description: Employee record created successfully.
+          description: |
+            - ClockIn record created successfully.
+            - ClockOut record created successfully.
+            - Employee record created successfully.
         '400':
           description: |
             - ClockIn or clockOut must be greater than zero.
