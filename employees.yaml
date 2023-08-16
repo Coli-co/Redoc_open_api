@@ -50,24 +50,42 @@ paths:
     get:
       tags:
         - employees
-      summary:  All employees from date operation.
-      description: Get all employees records on specific date or in date range.
+      summary:  Employees from specific date operation.
+      description: Get all employees records on specific date.
       parameters:
         - name: date
           in: query
           schema:
             type: integer
           description: Specific date in millisecond
-        - name: start
-          in: query
-          schema:
-            type: integer
-          description: Date range in millisecond
-        - name: end
-          in: query
-          schema:
-            type: integer
-          description: Date range in millisecond
+          required: true
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allEmployee'
+
+  /employees/date-range:
+    get:
+      tags:
+        - employees
+      summary: Employees from date range operation.
+      description: Get all employees records  in date range.
+      parameters:
+          - name: start
+            in: query
+            schema:
+              type: integer
+            description: Start date in millisecond
+            required: true
+          - name: end
+            in: query
+            schema:
+              type: integer
+            description: End date in millisecond
+            required: true
       responses:
         '200':
           description: OK.
@@ -80,8 +98,6 @@ paths:
             - Query params of start and end both required.
             - Start or end must be grater than zero.
             - Start value must be less than end value.
-
-    
   '/employees/{employeenumber}': 
     put:
       tags:
